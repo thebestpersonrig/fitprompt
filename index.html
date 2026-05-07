@@ -358,7 +358,7 @@ async function regenDay(i) {
       'You are a personal trainer. Respond ONLY with valid JSON, no markdown.',
       `Generate a replacement workout for Day ${i+1} of a 7-day plan.
 User description: "${lastPrompt}". Split: ${SPLIT_LABELS[selectedSplit]}
-Current day: "${day.name}" (${day.type}, ${day.duration}). Give different exercises.
+Current day: "${day.name}" (${day.type}, ${day.duration}). Give different exercises, 6-8 total.
 Respond with ONLY this JSON:
 {"name":"...","type":"...","duration":"...","exercises":[{"name":"...","sets":"...","tip":"..."}],"note":"..."}`
     );
@@ -429,27 +429,42 @@ async function generatePlan() {
   errorEl.classList.remove('show');
   output.classList.remove('visible');
   output.innerHTML = '';
-  const systemPrompt = `You are an expert certified personal trainer and nutritionist. Respond ONLY with valid JSON, no markdown, no backticks, no explanation.`;
-  const userPrompt = `${SPLIT_LABELS[selectedSplit]}
-The user described themselves as: "${prompt}"
-Respond with ONLY this JSON:
+
+  const systemPrompt = `You are an elite certified personal trainer and sports nutritionist with 15 years of experience. You create detailed, science-backed, highly personalized workout plans. You always respond ONLY with valid JSON — no markdown, no backticks, no explanation, no text before or after the JSON.`;
+  const userPrompt = `Create a highly personalized 7-day fitness plan for this person: "${prompt}"
+Training style: ${SPLIT_LABELS[selectedSplit]}
+
+Rules:
+- Workout days: 6-8 exercises each, including warm-up and cool-down
+- Rest/recovery days: 2-3 light activities (stretching, walking, foam rolling)
+- Sets/reps must be specific (e.g. "4 sets x 10 reps", "3 sets x 45 sec", "20 minutes")
+- Each exercise tip must be a real, useful form cue or coaching note
+- Day names must be descriptive (e.g. "Push Day — Chest & Shoulders", not just "Day 1")
+- Notes must be motivating and specific to that day's workout
+- Nutrition advice must be practical and specific (grams, timing, food examples)
+- Tips must be actionable, not generic
+
+Respond with ONLY this exact JSON structure:
 {
-  "title": "Short motivating plan name",
-  "summary": { "duration": "X min/day", "level": "Beginner/Intermediate/Advanced", "daysPerWeek": "X days", "focus": "e.g. Fat loss" },
+  "title": "Creative motivating plan name (e.g. 'The 28-Day Shred Protocol')",
+  "summary": { "duration": "X min/day", "level": "Beginner/Intermediate/Advanced", "daysPerWeek": "X days", "focus": "specific focus e.g. Fat loss & muscle tone" },
   "days": [
-    { "name": "Day label", "type": "Strength/Cardio/HIIT/Rest/Flexibility", "duration": "X minutes",
-      "exercises": [{ "name": "Exercise name", "sets": "3 sets x 12 reps", "tip": "Short form tip" }],
-      "note": "Short motivating note" }
+    { "name": "Descriptive day name", "type": "Strength/Cardio/HIIT/Rest/Flexibility", "duration": "X minutes",
+      "exercises": [
+        { "name": "Exercise name", "sets": "X sets x Y reps or time", "tip": "Specific coaching cue" }
+      ],
+      "note": "Motivating day-specific note" }
   ],
   "nutrition": [
-    { "title": "Pre-workout", "text": "Practical advice" },
-    { "title": "Protein intake", "text": "Practical advice" },
-    { "title": "Hydration", "text": "Practical advice" },
-    { "title": "Recovery meals", "text": "Practical advice" }
+    { "title": "Pre-workout", "text": "Specific advice with timing and food examples" },
+    { "title": "Protein intake", "text": "Specific daily target with food sources" },
+    { "title": "Hydration", "text": "Specific daily water target and timing tips" },
+    { "title": "Recovery meals", "text": "Specific post-workout nutrition with examples" }
   ],
-  "tips": ["Tip 1", "Tip 2", "Tip 3"]
+  "tips": ["Specific actionable tip 1", "Specific actionable tip 2", "Specific actionable tip 3"]
 }
-Always include exactly 7 days. Be specific and personalized.`;
+Always include exactly 7 days. Workout days must have 6-8 exercises. Be extremely specific and personalized to what the user described.`;
+
   try {
     const plan = await callAI(systemPrompt, userPrompt);
     renderPlan(plan);
