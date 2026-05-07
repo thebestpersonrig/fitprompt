@@ -27,11 +27,7 @@
     line-height: 1.6;
   }
 
-  header {
-    padding: 2.5rem 2rem 0;
-    max-width: 760px;
-    margin: 0 auto;
-  }
+  header { padding: 2.5rem 2rem 0; max-width: 760px; margin: 0 auto; }
 
   .logo {
     font-family: 'Bebas Neue', sans-serif;
@@ -49,23 +45,55 @@
     text-transform: uppercase;
   }
 
-  main {
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 2rem 2rem 4rem;
-  }
+  main { max-width: 760px; margin: 0 auto; padding: 2rem 2rem 4rem; }
 
-  .prompt-section {
-    margin-top: 2rem;
-  }
-
-  .prompt-label {
+  .section-label {
     font-size: 0.8rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--muted);
     margin-bottom: 12px;
   }
+
+  /* Split selector */
+  .split-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 10px;
+  }
+
+  .split-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 10px;
+    cursor: pointer;
+    transition: all 0.15s;
+    text-align: center;
+    user-select: none;
+  }
+
+  .split-card:hover { border-color: rgba(200,241,53,0.35); }
+  .split-card.selected { border-color: var(--lime); background: rgba(200,241,53,0.08); }
+
+  .best-tag {
+    display: inline-block;
+    font-size: 0.62rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    background: rgba(200,241,53,0.15);
+    color: var(--lime);
+    border-radius: 20px;
+    padding: 2px 8px;
+    margin-bottom: 5px;
+  }
+
+  .split-icon { font-size: 1.2rem; margin-bottom: 5px; }
+  .split-name { font-size: 0.8rem; font-weight: 500; color: var(--text); line-height: 1.3; }
+  .split-desc { font-size: 0.7rem; color: var(--muted); margin-top: 3px; line-height: 1.4; }
+
+  /* Prompt */
+  .prompt-section { margin-top: 1.5rem; }
 
   .prompt-box {
     background: var(--surface);
@@ -78,9 +106,7 @@
     transition: border-color 0.2s;
   }
 
-  .prompt-box:focus-within {
-    border-color: rgba(200,241,53,0.45);
-  }
+  .prompt-box:focus-within { border-color: rgba(200,241,53,0.45); }
 
   textarea {
     background: transparent;
@@ -92,27 +118,15 @@
     font-weight: 300;
     resize: none;
     width: 100%;
-    min-height: 90px;
+    min-height: 80px;
     line-height: 1.7;
     caret-color: var(--lime);
   }
 
-  textarea::placeholder {
-    color: var(--muted);
-    font-style: italic;
-  }
+  textarea::placeholder { color: var(--muted); font-style: italic; }
 
-  .prompt-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .prompt-hints {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
+  .prompt-footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .prompt-hints { display: flex; gap: 8px; flex-wrap: wrap; }
 
   .hint {
     font-size: 0.75rem;
@@ -126,9 +140,7 @@
     white-space: nowrap;
   }
 
-  .hint:hover {
-    background: rgba(200,241,53,0.15);
-  }
+  .hint:hover { background: rgba(200,241,53,0.15); }
 
   .generate-btn {
     background: var(--lime);
@@ -150,31 +162,23 @@
   .generate-btn:active { transform: scale(0.97); }
   .generate-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 
-  /* Loading */
-  .loading {
+  .error-msg {
     display: none;
-    align-items: center;
-    gap: 12px;
-    padding: 2rem 0;
-    color: var(--muted);
-    font-size: 0.9rem;
+    color: #FF6B6B;
+    font-size: 0.85rem;
+    margin-top: 10px;
+    padding: 10px 14px;
+    background: rgba(255,107,107,0.08);
+    border-radius: 8px;
+    border: 1px solid rgba(255,107,107,0.2);
   }
+  .error-msg.show { display: block; }
 
+  /* Loading */
+  .loading { display: none; align-items: center; gap: 12px; padding: 2rem 0; color: var(--muted); font-size: 0.9rem; }
   .loading.active { display: flex; }
-
-  .dots {
-    display: flex;
-    gap: 5px;
-  }
-
-  .dots span {
-    width: 6px;
-    height: 6px;
-    background: var(--lime);
-    border-radius: 50%;
-    animation: pulse 1.2s ease-in-out infinite;
-  }
-
+  .dots { display: flex; gap: 5px; }
+  .dots span { width: 6px; height: 6px; background: var(--lime); border-radius: 50%; animation: pulse 1.2s ease-in-out infinite; }
   .dots span:nth-child(2) { animation-delay: 0.2s; }
   .dots span:nth-child(3) { animation-delay: 0.4s; }
 
@@ -194,121 +198,53 @@
 
   .plan-header {
     display: flex;
-    align-items: baseline;
+    align-items: center;
     justify-content: space-between;
     margin-bottom: 1.5rem;
     border-bottom: 1px solid var(--border);
     padding-bottom: 1rem;
-  }
-
-  .plan-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 2rem;
-    color: var(--lime);
-    letter-spacing: 0.04em;
-  }
-
-  .plan-meta {
-    font-size: 0.8rem;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-  }
-
-  /* Summary strip */
-  .summary-strip {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    flex-wrap: wrap;
     gap: 10px;
-    margin-bottom: 2rem;
   }
 
-  .stat-card {
-    background: var(--card);
+  .plan-title { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: var(--lime); letter-spacing: 0.04em; }
+
+  .pdf-btn {
+    background: transparent;
     border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 14px 16px;
-  }
-
-  .stat-label {
-    font-size: 0.7rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
     color: var(--muted);
-    margin-bottom: 4px;
+    border-radius: 8px;
+    padding: 7px 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem;
+    cursor: pointer;
+    transition: all 0.15s;
   }
 
-  .stat-value {
-    font-size: 1.1rem;
-    font-weight: 500;
-    color: var(--lime);
-  }
+  .pdf-btn:hover { border-color: rgba(200,241,53,0.3); color: var(--lime); }
+
+  /* Summary */
+  .summary-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin-bottom: 2rem; }
+  .stat-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; }
+  .stat-label { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+  .stat-value { font-size: 1.1rem; font-weight: 500; color: var(--lime); }
 
   /* Day cards */
-  .days-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
+  .days-grid { display: flex; flex-direction: column; gap: 12px; }
 
-  .day-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    overflow: hidden;
-    transition: border-color 0.2s;
-  }
-
+  .day-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; transition: border-color 0.2s; }
   .day-card:hover { border-color: rgba(200,241,53,0.3); }
+  .day-card.day-complete { border-color: rgba(200,241,53,0.5); }
 
-  .day-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 14px 18px;
-    cursor: pointer;
-    user-select: none;
-  }
-
-  .day-left {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .day-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.5rem;
-    color: var(--lime);
-    letter-spacing: 0.04em;
-    line-height: 1;
-    width: 40px;
-  }
-
+  .day-header { display: flex; align-items: center; justify-content: space-between; padding: 14px 18px; cursor: pointer; user-select: none; }
+  .day-left { display: flex; align-items: center; gap: 12px; }
+  .day-num { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; color: var(--lime); letter-spacing: 0.04em; line-height: 1; width: 40px; }
   .day-info { display: flex; flex-direction: column; }
+  .day-name { font-weight: 500; font-size: 0.95rem; color: var(--text); }
+  .day-dur { font-size: 0.78rem; color: var(--muted); margin-top: 1px; }
+  .day-right { display: flex; align-items: center; gap: 8px; }
 
-  .day-name {
-    font-weight: 500;
-    font-size: 0.95rem;
-    color: var(--text);
-  }
-
-  .day-type {
-    font-size: 0.78rem;
-    color: var(--muted);
-    margin-top: 1px;
-  }
-
-  .day-badge {
-    font-size: 0.72rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    padding: 3px 10px;
-    border-radius: 20px;
-    border: 1px solid;
-    font-weight: 500;
-  }
-
+  .day-badge { font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 10px; border-radius: 20px; border: 1px solid; font-weight: 500; }
   .badge-strength { color: #FF6B6B; border-color: rgba(255,107,107,0.3); background: rgba(255,107,107,0.08); }
   .badge-cardio { color: #4ECDC4; border-color: rgba(78,205,196,0.3); background: rgba(78,205,196,0.08); }
   .badge-rest { color: var(--muted); border-color: rgba(107,110,90,0.3); background: rgba(107,110,90,0.08); }
@@ -316,18 +252,22 @@
   .badge-flexibility { color: #A78BFA; border-color: rgba(167,139,250,0.3); background: rgba(167,139,250,0.08); }
   .badge-active { color: var(--lime); border-color: var(--border); background: rgba(200,241,53,0.08); }
 
-  .chevron {
+  .regen-btn {
+    background: transparent;
+    border: 1px solid rgba(107,110,90,0.3);
+    border-radius: 6px;
     color: var(--muted);
-    font-size: 1.1rem;
-    transition: transform 0.25s;
+    font-size: 0.74rem;
+    padding: 4px 9px;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: 'DM Sans', sans-serif;
   }
+  .regen-btn:hover { border-color: rgba(200,241,53,0.3); color: var(--lime); }
 
-  .day-body {
-    display: none;
-    border-top: 1px solid var(--border);
-    padding: 16px 18px 18px;
-  }
+  .chevron { color: var(--muted); font-size: 1.1rem; }
 
+  .day-body { display: none; border-top: 1px solid var(--border); padding: 16px 18px 18px; }
   .day-body.open { display: block; animation: slideDown 0.2s ease; }
 
   @keyframes slideDown {
@@ -335,11 +275,10 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
-  .exercises {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
+  .regen-loading { display: none; align-items: center; gap: 8px; padding: 8px 0 12px; font-size: 0.82rem; color: var(--muted); }
+  .regen-loading.active { display: flex; }
+
+  .exercises { display: flex; flex-direction: column; gap: 8px; }
 
   .exercise-row {
     display: flex;
@@ -348,159 +287,73 @@
     padding: 10px 12px;
     background: rgba(255,255,255,0.025);
     border-radius: 8px;
-  }
-
-  .ex-dot {
-    width: 6px;
-    height: 6px;
-    background: var(--lime);
-    border-radius: 50%;
-    margin-top: 7px;
-    flex-shrink: 0;
-  }
-
-  .ex-details { flex: 1; }
-
-  .ex-name {
-    font-weight: 500;
-    font-size: 0.9rem;
-    color: var(--text);
-  }
-
-  .ex-meta {
-    font-size: 0.8rem;
-    color: var(--muted);
-    margin-top: 2px;
-  }
-
-  .ex-tip {
-    font-size: 0.78rem;
-    font-style: italic;
-    color: rgba(200,241,53,0.5);
-    margin-top: 4px;
-  }
-
-  .day-note {
-    margin-top: 14px;
-    padding: 10px 14px;
-    background: rgba(200,241,53,0.05);
-    border-left: 2px solid var(--lime);
-    border-radius: 0 6px 6px 0;
-    font-size: 0.83rem;
-    color: rgba(240,240,232,0.7);
-    font-style: italic;
-  }
-
-  /* Nutrition section */
-  .section-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.4rem;
-    color: var(--lime);
-    letter-spacing: 0.04em;
-    margin: 2rem 0 1rem;
-  }
-
-  .nutrition-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 10px;
-  }
-
-  .nutrition-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 14px 16px;
-  }
-
-  .nutrition-title {
-    font-weight: 500;
-    font-size: 0.88rem;
-    color: var(--text);
-    margin-bottom: 6px;
-  }
-
-  .nutrition-text {
-    font-size: 0.82rem;
-    color: var(--muted);
-    line-height: 1.6;
-  }
-
-  /* Tips */
-  .tips-list {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .tip-row {
-    display: flex;
-    gap: 10px;
-    align-items: flex-start;
-    font-size: 0.88rem;
-    color: rgba(240,240,232,0.75);
-    line-height: 1.5;
-  }
-
-  .tip-num {
-    font-family: 'Bebas Neue', sans-serif;
-    color: var(--lime);
-    font-size: 1rem;
-    line-height: 1.4;
-    min-width: 18px;
-  }
-
-  /* Error */
-  .error-msg {
-    display: none;
-    color: #FF6B6B;
-    font-size: 0.85rem;
-    margin-top: 10px;
-    padding: 10px 14px;
-    background: rgba(255,107,107,0.08);
-    border-radius: 8px;
-    border: 1px solid rgba(255,107,107,0.2);
-  }
-
-  .error-msg.show { display: block; }
-
-  .reset-btn {
-    background: transparent;
-    border: 1px solid var(--border);
-    color: var(--muted);
-    border-radius: 8px;
-    padding: 8px 18px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.85rem;
     cursor: pointer;
     transition: all 0.15s;
-    margin-top: 2rem;
-    display: block;
   }
+  .exercise-row:hover { background: rgba(255,255,255,0.04); }
+  .exercise-row.done { opacity: 0.4; }
 
-  .reset-btn:hover { border-color: rgba(200,241,53,0.3); color: var(--lime); }
-
-  .key-bar {
+  .ex-check {
+    width: 18px; height: 18px;
+    border: 1.5px solid var(--muted);
+    border-radius: 4px;
+    flex-shrink: 0;
+    margin-top: 3px;
     display: flex;
     align-items: center;
-    gap: 10px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 10px 14px;
-    margin-top: 1.5rem;
+    justify-content: center;
+    transition: all 0.15s;
   }
-  .key-bar label { font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
-  .key-bar input { flex: 1; background: transparent; border: none; outline: none; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 0.88rem; caret-color: var(--lime); }
-  .key-bar input::placeholder { color: var(--muted); }
-  .key-status { font-size: 0.72rem; padding: 3px 10px; border-radius: 20px; white-space: nowrap; }
-  .key-status.ok { background: rgba(200,241,53,0.1); color: var(--lime); border: 1px solid var(--border); }
-  .key-status.empty { background: rgba(107,110,90,0.1); color: var(--muted); border: 1px solid rgba(107,110,90,0.2); }
+  .exercise-row.done .ex-check { background: var(--lime); border-color: var(--lime); }
+  .ex-tick { display: none; color: var(--dark); font-size: 11px; font-weight: 700; }
+  .exercise-row.done .ex-tick { display: block; }
+
+  .ex-details { flex: 1; }
+  .ex-name { font-weight: 500; font-size: 0.9rem; color: var(--text); }
+  .exercise-row.done .ex-name { text-decoration: line-through; }
+  .ex-meta { font-size: 0.8rem; color: var(--muted); margin-top: 2px; }
+  .ex-tip { font-size: 0.78rem; font-style: italic; color: rgba(200,241,53,0.5); margin-top: 4px; }
+
+  .day-progress { margin-top: 12px; display: flex; align-items: center; gap: 8px; }
+  .progress-label { font-size: 0.72rem; color: var(--muted); white-space: nowrap; }
+  .progress-bar { flex: 1; height: 3px; background: rgba(255,255,255,0.08); border-radius: 2px; overflow: hidden; }
+  .progress-fill { height: 100%; background: var(--lime); border-radius: 2px; transition: width 0.3s ease; width: 0%; }
+
+  .day-note { margin-top: 14px; padding: 10px 14px; background: rgba(200,241,53,0.05); border-left: 2px solid var(--lime); border-radius: 0 6px 6px 0; font-size: 0.83rem; color: rgba(240,240,232,0.7); font-style: italic; }
+
+  /* Nutrition & tips */
+  .out-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; color: var(--lime); letter-spacing: 0.04em; margin: 2rem 0 1rem; }
+  .nutrition-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
+  .nutrition-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; }
+  .nutrition-title { font-weight: 500; font-size: 0.88rem; color: var(--text); margin-bottom: 6px; }
+  .nutrition-text { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+  .tips-list { display: flex; flex-direction: column; gap: 8px; }
+  .tip-row { display: flex; gap: 10px; align-items: flex-start; font-size: 0.88rem; color: rgba(240,240,232,0.75); line-height: 1.5; }
+  .tip-num { font-family: 'Bebas Neue', sans-serif; color: var(--lime); font-size: 1rem; line-height: 1.4; min-width: 18px; }
+
+  .reset-btn { background: transparent; border: 1px solid var(--border); color: var(--muted); border-radius: 8px; padding: 8px 18px; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; cursor: pointer; transition: all 0.15s; margin-top: 2rem; display: block; }
+  .reset-btn:hover { border-color: rgba(200,241,53,0.3); color: var(--lime); }
+
+  @media print {
+    body { background: white; color: black; }
+    header, .split-section, .prompt-section, .loading, .reset-btn, .pdf-btn, .regen-btn, .error-msg, .day-progress { display: none !important; }
+    #plan-output { display: block !important; margin: 0; }
+    .day-body { display: block !important; }
+    .day-card { break-inside: avoid; border: 1px solid #ddd; margin-bottom: 10px; }
+    .day-header { background: #f5f5f5; }
+    .plan-title, .day-num, .out-title { color: #3a6000; }
+    .day-name, .ex-name { color: black; }
+    .ex-meta, .day-dur, .muted { color: #666; }
+    .stat-card, .nutrition-card { border: 1px solid #ddd; }
+    .stat-value { color: #3a6000; }
+    .chevron { display: none; }
+  }
 
   @media (max-width: 540px) {
     .logo { font-size: 2.2rem; }
     .prompt-hints { display: none; }
     .summary-strip { grid-template-columns: 1fr 1fr; }
+    .split-grid { grid-template-columns: repeat(3, 1fr); }
   }
 </style>
 </head>
@@ -512,15 +365,50 @@
 </header>
 
 <main>
+  <div class="split-section" style="margin-top:2rem">
+    <div class="section-label">Choose your training style</div>
+    <div class="split-grid">
+      <div class="split-card selected" data-split="best" onclick="selectSplit(this)">
+        <div class="best-tag">Recommended</div>
+        <div class="split-name">Best for me</div>
+        <div class="split-desc">AI picks the perfect split for your goals</div>
+      </div>
+      <div class="split-card" data-split="full_body" onclick="selectSplit(this)">
+        <div class="split-icon">⬛</div>
+        <div class="split-name">Full body</div>
+        <div class="split-desc">Train everything each session</div>
+      </div>
+      <div class="split-card" data-split="upper_lower" onclick="selectSplit(this)">
+        <div class="split-icon">↕</div>
+        <div class="split-name">Upper / Lower</div>
+        <div class="split-desc">Alternate upper and lower days</div>
+      </div>
+      <div class="split-card" data-split="ppl" onclick="selectSplit(this)">
+        <div class="split-icon">▲</div>
+        <div class="split-name">Push / Pull / Legs</div>
+        <div class="split-desc">Classic 3-way muscle split</div>
+      </div>
+      <div class="split-card" data-split="cardio" onclick="selectSplit(this)">
+        <div class="split-icon">♡</div>
+        <div class="split-name">Cardio focused</div>
+        <div class="split-desc">Running, HIIT, endurance</div>
+      </div>
+      <div class="split-card" data-split="bro" onclick="selectSplit(this)">
+        <div class="split-icon">◆</div>
+        <div class="split-name">Bro split</div>
+        <div class="split-desc">One muscle group per day</div>
+      </div>
+    </div>
+  </div>
+
   <div class="prompt-section">
-    <div class="prompt-label">Describe yourself & your goals</div>
+    <div class="section-label" style="margin-top:1.5rem">Describe yourself & your goals</div>
     <div class="prompt-box">
-      <textarea id="prompt-input" placeholder="e.g. I'm 28, work a desk job, 30 mins a day max, want to build strength and lose some belly fat. I have dumbbells at home..." rows="4"></textarea>
+      <textarea id="prompt-input" placeholder="e.g. I'm 28, work a desk job, 30 mins a day max, want to lose weight. I have dumbbells at home..." rows="3"></textarea>
       <div class="prompt-footer">
         <div class="prompt-hints">
           <span class="hint" onclick="setHint(this)">Busy professional, weight loss</span>
           <span class="hint" onclick="setHint(this)">Beginner, muscle gain, gym</span>
-          <span class="hint" onclick="setHint(this)">Runner, improve endurance</span>
           <span class="hint" onclick="setHint(this)">Home workout, no equipment</span>
         </div>
         <button class="generate-btn" id="gen-btn" onclick="generatePlan()">Generate plan ↗</button>
@@ -538,29 +426,35 @@
 </main>
 
 <script>
-const HINTS = {
-  "Busy professional, weight loss": "I'm a busy professional with only 30 minutes a day. I want to lose weight and feel more energetic. I can work out at home and have resistance bands.",
-  "Beginner, muscle gain, gym": "I'm a complete beginner at the gym. I want to build muscle and gain strength. I have access to a full gym with free weights and machines.",
-  "Runner, improve endurance": "I'm an intermediate runner looking to improve my 5K time and overall endurance. I run 3 times a week and want a balanced plan.",
-  "Home workout, no equipment": "I want to get fit with zero equipment at home. I'm intermediate level and have about 45 minutes, 5 days a week. Focus on bodyweight fitness."
+const API_KEY = 'AIzaSyD-1voFzj-oUqqC55CYUHBxG6qygdSB2sU';
+const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${API_KEY}`;
+
+let currentPlan = null;
+let selectedSplit = 'best';
+let lastPrompt = '';
+
+const SPLIT_LABELS = {
+  best: 'Choose the optimal training split for this person based on their goals and experience.',
+  full_body: 'Use a Full Body split — every session trains all major muscle groups.',
+  upper_lower: 'Use an Upper/Lower split — alternate upper body and lower body days.',
+  ppl: 'Use a Push/Pull/Legs (PPL) split — push muscles, pull muscles, and legs on separate days.',
+  cardio: 'Use a Cardio-focused plan — prioritize running, HIIT, and cardiovascular endurance.',
+  bro: 'Use a Bro split — dedicate each day to one muscle group (chest, back, shoulders, arms, legs).'
 };
 
-function setHint(el) {
-  document.getElementById('prompt-input').value = HINTS[el.textContent.trim()] || el.textContent;
+function selectSplit(el) {
+  document.querySelectorAll('.split-card').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedSplit = el.dataset.split;
 }
 
-function toggleDay(header) {
-  const body = header.nextElementSibling;
-  const chevron = header.querySelector('.chevron');
-  const isOpen = body.classList.contains('open');
-  document.querySelectorAll('.day-body.open').forEach(b => {
-    b.classList.remove('open');
-    b.previousElementSibling.querySelector('.chevron').textContent = '›';
-  });
-  if (!isOpen) {
-    body.classList.add('open');
-    chevron.textContent = '⌄';
-  }
+function setHint(el) {
+  const hints = {
+    "Busy professional, weight loss": "I'm a busy professional with only 30 minutes a day. I want to lose weight and feel more energetic. I can work out at home and have resistance bands.",
+    "Beginner, muscle gain, gym": "I'm a complete beginner at the gym. I want to build muscle and gain strength. I have access to a full gym with free weights and machines.",
+    "Home workout, no equipment": "I want to get fit with zero equipment at home. I'm intermediate level and have about 45 minutes, 5 days a week."
+  };
+  document.getElementById('prompt-input').value = hints[el.textContent.trim()] || el.textContent;
 }
 
 function getBadgeClass(type) {
@@ -573,94 +467,163 @@ function getBadgeClass(type) {
   return 'badge-active';
 }
 
+function toggleDay(header) {
+  const card = header.closest('.day-card');
+  const body = card.querySelector('.day-body');
+  const chevron = header.querySelector('.chevron');
+  const isOpen = body.classList.contains('open');
+  document.querySelectorAll('.day-body.open').forEach(b => {
+    b.classList.remove('open');
+    b.closest('.day-card').querySelector('.chevron').textContent = '›';
+  });
+  if (!isOpen) { body.classList.add('open'); chevron.textContent = '⌄'; }
+}
+
+function toggleExercise(row) {
+  row.classList.toggle('done');
+  const body = row.closest('.day-body');
+  const total = body.querySelectorAll('.exercise-row').length;
+  const done = body.querySelectorAll('.exercise-row.done').length;
+  body.querySelector('.progress-fill').style.width = (done / total * 100) + '%';
+  body.querySelector('.progress-label').textContent = done + ' / ' + total + ' done';
+  row.closest('.day-card').classList.toggle('day-complete', done === total && total > 0);
+}
+
+function buildDayInner(day, i) {
+  const exHTML = (day.exercises || []).map(ex => `
+    <div class="exercise-row" onclick="toggleExercise(this)">
+      <div class="ex-check"><span class="ex-tick">✓</span></div>
+      <div class="ex-details">
+        <div class="ex-name">${ex.name}</div>
+        <div class="ex-meta">${ex.sets || ''}</div>
+        ${ex.tip ? `<div class="ex-tip">${ex.tip}</div>` : ''}
+      </div>
+    </div>`).join('');
+
+  return `
+    <div class="regen-loading" id="rl-${i}">
+      <div class="dots"><span></span><span></span><span></span></div>
+      <span>Regenerating day ${i+1}...</span>
+    </div>
+    <div class="exercises" id="ex-${i}">${exHTML}</div>
+    ${day.note ? `<div class="day-note">${day.note}</div>` : ''}
+    <div class="day-progress">
+      <span class="progress-label">0 / ${(day.exercises||[]).length} done</span>
+      <div class="progress-bar"><div class="progress-fill"></div></div>
+    </div>`;
+}
+
+function buildDayCard(day, i) {
+  return `
+    <div class="day-card" id="dc-${i}">
+      <div class="day-header" onclick="toggleDay(this)">
+        <div class="day-left">
+          <div class="day-num">D${i+1}</div>
+          <div class="day-info">
+            <div class="day-name">${day.name}</div>
+            <div class="day-dur">${day.duration || ''}</div>
+          </div>
+        </div>
+        <div class="day-right">
+          <span class="day-badge ${getBadgeClass(day.type)}">${day.type}</span>
+          <button class="regen-btn" onclick="event.stopPropagation();regenDay(${i})">↺ Redo day</button>
+          <span class="chevron">›</span>
+        </div>
+      </div>
+      <div class="day-body">${buildDayInner(day, i)}</div>
+    </div>`;
+}
+
+async function callAI(text) {
+  const res = await fetch(API_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      contents: [{ parts: [{ text }] }],
+      generationConfig: { temperature: 0.7, maxOutputTokens: 4000 }
+    })
+  });
+  const data = await res.json();
+  if (!res.ok) throw new Error(data?.error?.message || 'API error ' + res.status);
+  const raw = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
+  if (!raw) throw new Error('Empty response from Gemini');
+  const match = raw.replace(/```json|```/g, '').match(/\{[\s\S]*\}/);
+  if (!match) throw new Error('Could not parse AI response as JSON');
+  return JSON.parse(match[0]);
+}
+
+async function regenDay(i) {
+  if (!currentPlan) return;
+  const card = document.getElementById(`dc-${i}`);
+  const body = card.querySelector('.day-body');
+  const rl = document.getElementById(`rl-${i}`);
+  const exEl = document.getElementById(`ex-${i}`);
+
+  if (!body.classList.contains('open')) toggleDay(card.querySelector('.day-header'));
+
+  rl.classList.add('active');
+  exEl.style.opacity = '0.2';
+
+  try {
+    const day = currentPlan.days[i];
+    const newDay = await callAI(
+      `You are a personal trainer. Generate a replacement workout for Day ${i+1} of a 7-day plan.
+User description: "${lastPrompt}". Split: ${SPLIT_LABELS[selectedSplit]}
+Current day: "${day.name}" (${day.type}, ${day.duration}). Give different exercises.
+Respond with ONLY this JSON (no markdown):
+{"name":"...","type":"...","duration":"...","exercises":[{"name":"...","sets":"...","tip":"..."}],"note":"..."}`
+    );
+    currentPlan.days[i] = newDay;
+    const tmp = document.createElement('div');
+    tmp.innerHTML = buildDayCard(newDay, i);
+    const newCard = tmp.firstElementChild;
+    card.replaceWith(newCard);
+    const newBody = newCard.querySelector('.day-body');
+    newBody.classList.add('open');
+    newCard.querySelector('.chevron').textContent = '⌄';
+  } catch (err) {
+    rl.classList.remove('active');
+    exEl.style.opacity = '1';
+    alert('Could not regenerate: ' + err.message);
+  }
+}
+
 function renderPlan(plan) {
+  currentPlan = plan;
   const out = document.getElementById('plan-output');
 
-  const summaryHTML = `
+  out.innerHTML = `
+    <div class="plan-header">
+      <div class="plan-title">${plan.title}</div>
+      <button class="pdf-btn" onclick="window.print()">⬇ Save as PDF</button>
+    </div>
     <div class="summary-strip">
       <div class="stat-card"><div class="stat-label">Duration</div><div class="stat-value">${plan.summary.duration}</div></div>
       <div class="stat-card"><div class="stat-label">Level</div><div class="stat-value">${plan.summary.level}</div></div>
       <div class="stat-card"><div class="stat-label">Days/week</div><div class="stat-value">${plan.summary.daysPerWeek}</div></div>
       <div class="stat-card"><div class="stat-label">Focus</div><div class="stat-value">${plan.summary.focus}</div></div>
-    </div>`;
-
-  const daysHTML = plan.days.map((day, i) => `
-    <div class="day-card">
-      <div class="day-header" onclick="toggleDay(this)">
-        <div class="day-left">
-          <div class="day-num">D${i + 1}</div>
-          <div class="day-info">
-            <div class="day-name">${day.name}</div>
-            <div class="day-type">${day.duration || ''}</div>
-          </div>
-        </div>
-        <div style="display:flex;align-items:center;gap:10px">
-          <span class="day-badge ${getBadgeClass(day.type)}">${day.type}</span>
-          <span class="chevron">›</span>
-        </div>
-      </div>
-      <div class="day-body">
-        <div class="exercises">
-          ${(day.exercises || []).map(ex => `
-            <div class="exercise-row">
-              <div class="ex-dot"></div>
-              <div class="ex-details">
-                <div class="ex-name">${ex.name}</div>
-                <div class="ex-meta">${ex.sets || ''}</div>
-                ${ex.tip ? `<div class="ex-tip">${ex.tip}</div>` : ''}
-              </div>
-            </div>
-          `).join('')}
-        </div>
-        ${day.note ? `<div class="day-note">${day.note}</div>` : ''}
-      </div>
     </div>
-  `).join('');
-
-  const nutritionHTML = plan.nutrition ? `
-    <div class="section-title">Nutrition guidelines</div>
-    <div class="nutrition-grid">
-      ${plan.nutrition.map(n => `
-        <div class="nutrition-card">
-          <div class="nutrition-title">${n.title}</div>
-          <div class="nutrition-text">${n.text}</div>
-        </div>
-      `).join('')}
-    </div>
-  ` : '';
-
-  const tipsHTML = plan.tips && plan.tips.length ? `
-    <div class="section-title">Pro tips</div>
-    <div class="tips-list">
-      ${plan.tips.map((tip, i) => `
-        <div class="tip-row">
-          <div class="tip-num">${i + 1}.</div>
-          <div>${tip}</div>
-        </div>
-      `).join('')}
-    </div>
-  ` : '';
-
-  out.innerHTML = `
-    <div class="plan-header">
-      <div class="plan-title">${plan.title}</div>
-      <div class="plan-meta">Your 7-day plan</div>
-    </div>
-    ${summaryHTML}
-    <div class="days-grid">${daysHTML}</div>
-    ${nutritionHTML}
-    ${tipsHTML}
+    <div class="days-grid">${plan.days.map((d,i) => buildDayCard(d,i)).join('')}</div>
+    ${plan.nutrition ? `
+      <div class="out-title">Nutrition guidelines</div>
+      <div class="nutrition-grid">${plan.nutrition.map(n=>`
+        <div class="nutrition-card"><div class="nutrition-title">${n.title}</div><div class="nutrition-text">${n.text}</div></div>`).join('')}
+      </div>` : ''}
+    ${plan.tips && plan.tips.length ? `
+      <div class="out-title">Pro tips</div>
+      <div class="tips-list">${plan.tips.map((t,i)=>`
+        <div class="tip-row"><div class="tip-num">${i+1}.</div><div>${t}</div></div>`).join('')}
+      </div>` : ''}
     <button class="reset-btn" onclick="resetPlan()">← Generate a new plan</button>
   `;
 
   out.classList.add('visible');
-
-  // Auto-open day 1
-  const firstHeader = out.querySelector('.day-header');
-  if (firstHeader) toggleDay(firstHeader);
+  const first = out.querySelector('.day-header');
+  if (first) toggleDay(first);
 }
 
 function resetPlan() {
+  currentPlan = null;
   document.getElementById('plan-output').classList.remove('visible');
   document.getElementById('plan-output').innerHTML = '';
   document.getElementById('prompt-input').focus();
@@ -668,10 +631,8 @@ function resetPlan() {
 
 async function generatePlan() {
   const prompt = document.getElementById('prompt-input').value.trim();
-  if (!prompt) {
-    document.getElementById('prompt-input').focus();
-    return;
-  }
+  if (!prompt) { document.getElementById('prompt-input').focus(); return; }
+  lastPrompt = prompt;
 
   const btn = document.getElementById('gen-btn');
   const loading = document.getElementById('loading');
@@ -684,74 +645,31 @@ async function generatePlan() {
   output.classList.remove('visible');
   output.innerHTML = '';
 
-  const systemPrompt = `You are an expert certified personal trainer and nutritionist. The user will describe themselves and their fitness goals. You must respond with ONLY a valid JSON object (no markdown, no backticks, no explanation) with this exact structure:
-
+  const fullPrompt = `You are an expert certified personal trainer and nutritionist.
+${SPLIT_LABELS[selectedSplit]}
+The user described themselves as: "${prompt}"
+Respond with ONLY a valid JSON object (no markdown, no backticks, no explanation):
 {
-  "title": "Short motivating plan name (e.g. 'The Lean Machine Protocol')",
-  "summary": {
-    "duration": "e.g. 45 min/day",
-    "level": "e.g. Beginner",
-    "daysPerWeek": "e.g. 5 days",
-    "focus": "e.g. Fat loss"
-  },
+  "title": "Short motivating plan name",
+  "summary": { "duration": "X min/day", "level": "Beginner/Intermediate/Advanced", "daysPerWeek": "X days", "focus": "e.g. Fat loss" },
   "days": [
-    {
-      "name": "Day label (e.g. 'Upper Body Strength')",
-      "type": "e.g. Strength / Cardio / HIIT / Rest / Flexibility",
-      "duration": "e.g. 40 minutes",
-      "exercises": [
-        {
-          "name": "Exercise name",
-          "sets": "e.g. 3 sets × 12 reps or 20 minutes",
-          "tip": "Optional short form tip"
-        }
-      ],
-      "note": "Optional motivating note for the day"
-    }
+    { "name": "Day label", "type": "Strength/Cardio/HIIT/Rest/Flexibility", "duration": "X minutes",
+      "exercises": [{ "name": "Exercise name", "sets": "3 sets x 12 reps", "tip": "Short form tip" }],
+      "note": "Short motivating note" }
   ],
   "nutrition": [
-    { "title": "e.g. Pre-workout", "text": "Short practical advice" },
-    { "title": "e.g. Protein", "text": "Short practical advice" },
-    { "title": "e.g. Hydration", "text": "Short practical advice" },
-    { "title": "e.g. Recovery meals", "text": "Short practical advice" }
+    { "title": "Pre-workout", "text": "Practical advice" },
+    { "title": "Protein intake", "text": "Practical advice" },
+    { "title": "Hydration", "text": "Practical advice" },
+    { "title": "Recovery meals", "text": "Practical advice" }
   ],
   "tips": ["Tip 1", "Tip 2", "Tip 3"]
 }
-
-Always include exactly 7 days. Make the plan realistic, specific, and personalized to what the user described. Include warm-up and cool-down in exercises where relevant. Respond ONLY with the JSON object.`;
-
-  const apiKey = 'AIzaSyD-1voFzj-oUqqC55CYUHBxG6qygdSB2sU';
+Always include exactly 7 days. Be specific and personalized. Respond ONLY with the JSON.`;
 
   try {
-    let response, data, raw, plan;
-
-    response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`,
-      {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          contents: [{ parts: [{ text: systemPrompt + '\n\nUser request: ' + prompt }] }],
-          generationConfig: { temperature: 0.7, maxOutputTokens: 4000 }
-        })
-      }
-    );
-
-    data = await response.json();
-
-    if (!response.ok) {
-      throw new Error(data?.error?.message || 'API returned status ' + response.status);
-    }
-
-    raw = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
-    if (!raw) throw new Error('Empty response from Gemini');
-
-    const jsonMatch = raw.replace(/```json|```/g, '').match(/\{[\s\S]*\}/);
-    if (!jsonMatch) throw new Error('Could not find JSON in response');
-
-    plan = JSON.parse(jsonMatch[0]);
+    const plan = await callAI(fullPrompt);
     renderPlan(plan);
-
   } catch (err) {
     errorEl.textContent = 'Error: ' + (err.message || 'Something went wrong');
     errorEl.classList.add('show');
@@ -761,8 +679,6 @@ Always include exactly 7 days. Make the plan realistic, specific, and personaliz
     loading.classList.remove('active');
   }
 }
-
-
 
 document.getElementById('prompt-input').addEventListener('keydown', e => {
   if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) generatePlan();
