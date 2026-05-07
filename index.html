@@ -17,438 +17,123 @@
     --pad: clamp(1rem, 4vw, 2rem);
     --radius: clamp(8px, 2vw, 12px);
   }
-
   * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-
   html { font-size: clamp(14px, 2vw, 16px); }
-
-  body {
-    background: var(--dark);
-    color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 300;
-    min-height: 100vh;
-    line-height: 1.6;
-    overflow-x: hidden;
-  }
-
-  header {
-    padding: clamp(1.5rem, 5vw, 2.5rem) var(--pad) 0;
-    max-width: 800px;
-    margin: 0 auto;
-  }
-
-  .logo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(2.2rem, 8vw, 3.2rem);
-    letter-spacing: 0.04em;
-    color: var(--lime);
-    line-height: 1;
-  }
-
-  .tagline {
-    font-size: clamp(0.7rem, 2.5vw, 0.9rem);
-    color: var(--muted);
-    margin-top: 4px;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-  }
-
-  main {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: clamp(1.25rem, 4vw, 2rem) var(--pad) clamp(3rem, 8vw, 5rem);
-  }
-
-  .section-label {
-    font-size: clamp(0.68rem, 2vw, 0.8rem);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 10px;
-  }
-
-  /* ── Split selector ── */
-  .split-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: clamp(6px, 2vw, 10px);
-  }
-
-  @media (min-width: 600px) {
-    .split-grid { grid-template-columns: repeat(6, 1fr); }
-  }
-
-  .split-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: clamp(10px, 3vw, 14px) clamp(6px, 2vw, 10px);
-    cursor: pointer;
-    transition: all 0.15s;
-    text-align: center;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-  }
-
+  body { background: var(--dark); color: var(--text); font-family: 'DM Sans', sans-serif; font-weight: 300; min-height: 100vh; line-height: 1.6; overflow-x: hidden; }
+  header { padding: clamp(1.5rem, 5vw, 2.5rem) var(--pad) 0; max-width: 800px; margin: 0 auto; }
+  .logo { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.2rem, 8vw, 3.2rem); letter-spacing: 0.04em; color: var(--lime); line-height: 1; }
+  .tagline { font-size: clamp(0.7rem, 2.5vw, 0.9rem); color: var(--muted); margin-top: 4px; letter-spacing: 0.06em; text-transform: uppercase; }
+  main { max-width: 800px; margin: 0 auto; padding: clamp(1.25rem, 4vw, 2rem) var(--pad) clamp(3rem, 8vw, 5rem); }
+  .section-label { font-size: clamp(0.68rem, 2vw, 0.8rem); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+  .split-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(6px, 2vw, 10px); }
+  @media (min-width: 600px) { .split-grid { grid-template-columns: repeat(6, 1fr); } }
+  .split-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: clamp(10px, 3vw, 14px) clamp(6px, 2vw, 10px); cursor: pointer; transition: all 0.15s; text-align: center; user-select: none; -webkit-user-select: none; touch-action: manipulation; }
   .split-card:active { transform: scale(0.97); }
   .split-card:hover { border-color: rgba(200,241,53,0.35); }
   .split-card.selected { border-color: var(--lime); background: rgba(200,241,53,0.08); }
-
-  .best-tag {
-    display: inline-block;
-    font-size: clamp(0.55rem, 1.5vw, 0.62rem);
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    background: rgba(200,241,53,0.15);
-    color: var(--lime);
-    border-radius: 20px;
-    padding: 2px 6px;
-    margin-bottom: 4px;
-  }
-
+  .best-tag { display: inline-block; font-size: clamp(0.55rem, 1.5vw, 0.62rem); letter-spacing: 0.06em; text-transform: uppercase; background: rgba(200,241,53,0.15); color: var(--lime); border-radius: 20px; padding: 2px 6px; margin-bottom: 4px; }
   .split-icon { font-size: clamp(1rem, 3vw, 1.2rem); margin-bottom: 4px; }
   .split-name { font-size: clamp(0.68rem, 2vw, 0.8rem); font-weight: 500; color: var(--text); line-height: 1.3; }
   .split-desc { display: none; }
-
-  @media (min-width: 480px) {
-    .split-desc { display: block; font-size: 0.68rem; color: var(--muted); margin-top: 3px; line-height: 1.4; }
-  }
-
-  /* ── Prompt ── */
+  @media (min-width: 480px) { .split-desc { display: block; font-size: 0.68rem; color: var(--muted); margin-top: 3px; line-height: 1.4; } }
   .prompt-section { margin-top: clamp(1rem, 4vw, 1.5rem); }
-
-  .prompt-box {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: clamp(0.9rem, 3vw, 1.25rem);
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    transition: border-color 0.2s;
-  }
-
+  .prompt-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: clamp(0.9rem, 3vw, 1.25rem); display: flex; flex-direction: column; gap: 10px; transition: border-color 0.2s; }
   .prompt-box:focus-within { border-color: rgba(200,241,53,0.45); }
-
-  textarea {
-    background: transparent;
-    border: none;
-    outline: none;
-    color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-    font-size: clamp(0.9rem, 3vw, 1rem);
-    font-weight: 300;
-    resize: none;
-    width: 100%;
-    min-height: clamp(70px, 15vw, 90px);
-    line-height: 1.7;
-    caret-color: var(--lime);
-  }
-
+  textarea { background: transparent; border: none; outline: none; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: clamp(0.9rem, 3vw, 1rem); font-weight: 300; resize: none; width: 100%; min-height: clamp(70px, 15vw, 90px); line-height: 1.7; caret-color: var(--lime); }
   textarea::placeholder { color: var(--muted); font-style: italic; }
-
-  .prompt-footer {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  @media (min-width: 540px) {
-    .prompt-footer { flex-direction: row; align-items: center; justify-content: space-between; }
-  }
-
+  .prompt-footer { display: flex; flex-direction: column; gap: 10px; }
+  @media (min-width: 540px) { .prompt-footer { flex-direction: row; align-items: center; justify-content: space-between; } }
   .prompt-hints { display: flex; gap: 6px; flex-wrap: wrap; }
-
-  .hint {
-    font-size: clamp(0.68rem, 2vw, 0.75rem);
-    background: rgba(200,241,53,0.08);
-    color: rgba(200,241,53,0.7);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 4px 10px;
-    cursor: pointer;
-    transition: background 0.15s;
-    white-space: nowrap;
-    touch-action: manipulation;
-  }
-
+  .hint { font-size: clamp(0.68rem, 2vw, 0.75rem); background: rgba(200,241,53,0.08); color: rgba(200,241,53,0.7); border: 1px solid var(--border); border-radius: 20px; padding: 4px 10px; cursor: pointer; transition: background 0.15s; white-space: nowrap; touch-action: manipulation; }
   .hint:active { background: rgba(200,241,53,0.2); }
   .hint:hover { background: rgba(200,241,53,0.15); }
-
-  .generate-btn {
-    background: var(--lime);
-    color: var(--dark);
-    border: none;
-    border-radius: 8px;
-    padding: clamp(12px, 3vw, 11px) clamp(16px, 5vw, 24px);
-    font-family: 'DM Sans', sans-serif;
-    font-size: clamp(0.88rem, 3vw, 0.9rem);
-    font-weight: 500;
-    cursor: pointer;
-    letter-spacing: 0.04em;
-    transition: opacity 0.15s, transform 0.1s;
-    white-space: nowrap;
-    width: 100%;
-    touch-action: manipulation;
-  }
-
-  @media (min-width: 540px) {
-    .generate-btn { width: auto; flex-shrink: 0; }
-  }
-
+  .generate-btn { background: var(--lime); color: var(--dark); border: none; border-radius: 8px; padding: clamp(12px, 3vw, 11px) clamp(16px, 5vw, 24px); font-family: 'DM Sans', sans-serif; font-size: clamp(0.88rem, 3vw, 0.9rem); font-weight: 500; cursor: pointer; letter-spacing: 0.04em; transition: opacity 0.15s, transform 0.1s; white-space: nowrap; width: 100%; touch-action: manipulation; }
+  @media (min-width: 540px) { .generate-btn { width: auto; flex-shrink: 0; } }
   .generate-btn:hover { opacity: 0.88; }
   .generate-btn:active { transform: scale(0.97); }
   .generate-btn:disabled { opacity: 0.4; cursor: not-allowed; }
-
-  .error-msg {
-    display: none;
-    color: #FF6B6B;
-    font-size: clamp(0.8rem, 2.5vw, 0.85rem);
-    margin-top: 10px;
-    padding: 10px 14px;
-    background: rgba(255,107,107,0.08);
-    border-radius: 8px;
-    border: 1px solid rgba(255,107,107,0.2);
-  }
+  .error-msg { display: none; color: #FF6B6B; font-size: clamp(0.8rem, 2.5vw, 0.85rem); margin-top: 10px; padding: 10px 14px; background: rgba(255,107,107,0.08); border-radius: 8px; border: 1px solid rgba(255,107,107,0.2); }
   .error-msg.show { display: block; }
-
-  /* ── Loading ── */
   .loading { display: none; align-items: center; gap: 12px; padding: 2rem 0; color: var(--muted); font-size: 0.9rem; }
   .loading.active { display: flex; }
   .dots { display: flex; gap: 5px; }
   .dots span { width: 6px; height: 6px; background: var(--lime); border-radius: 50%; animation: pulse 1.2s ease-in-out infinite; }
   .dots span:nth-child(2) { animation-delay: 0.2s; }
   .dots span:nth-child(3) { animation-delay: 0.4s; }
-
-  @keyframes pulse {
-    0%, 80%, 100% { opacity: 0.2; transform: scale(0.8); }
-    40% { opacity: 1; transform: scale(1); }
-  }
-
-  /* ── Plan output ── */
+  @keyframes pulse { 0%, 80%, 100% { opacity: 0.2; transform: scale(0.8); } 40% { opacity: 1; transform: scale(1); } }
   #plan-output { display: none; margin-top: 2rem; animation: fadeUp 0.4s ease; }
   #plan-output.visible { display: block; }
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(16px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .plan-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 1.25rem;
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 1rem;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-
-  .plan-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(1.5rem, 6vw, 2rem);
-    color: var(--lime);
-    letter-spacing: 0.04em;
-    line-height: 1.1;
-  }
-
-  .pdf-btn {
-    background: transparent;
-    border: 1px solid var(--border);
-    color: var(--muted);
-    border-radius: 8px;
-    padding: 8px 14px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: clamp(0.75rem, 2.5vw, 0.82rem);
-    cursor: pointer;
-    transition: all 0.15s;
-    touch-action: manipulation;
-  }
-
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  .plan-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem; flex-wrap: wrap; gap: 10px; }
+  .plan-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(1.5rem, 6vw, 2rem); color: var(--lime); letter-spacing: 0.04em; line-height: 1.1; }
+  .pdf-btn { background: transparent; border: 1px solid var(--border); color: var(--muted); border-radius: 8px; padding: 8px 14px; font-family: 'DM Sans', sans-serif; font-size: clamp(0.75rem, 2.5vw, 0.82rem); cursor: pointer; transition: all 0.15s; touch-action: manipulation; }
   .pdf-btn:hover { border-color: rgba(200,241,53,0.3); color: var(--lime); }
-
-  /* ── Summary strip ── */
-  .summary-strip {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: clamp(6px, 2vw, 10px);
-    margin-bottom: 1.5rem;
-  }
-
-  @media (min-width: 500px) {
-    .summary-strip { grid-template-columns: repeat(4, 1fr); }
-  }
-
-  .stat-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: clamp(10px, 3vw, 14px) clamp(12px, 3vw, 16px);
-  }
-
+  .summary-strip { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(6px, 2vw, 10px); margin-bottom: 1.5rem; }
+  @media (min-width: 500px) { .summary-strip { grid-template-columns: repeat(4, 1fr); } }
+  .stat-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: clamp(10px, 3vw, 14px) clamp(12px, 3vw, 16px); }
   .stat-label { font-size: clamp(0.62rem, 2vw, 0.7rem); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
   .stat-value { font-size: clamp(0.9rem, 3vw, 1.1rem); font-weight: 500; color: var(--lime); }
-
-  /* ── Day cards ── */
   .days-grid { display: flex; flex-direction: column; gap: clamp(8px, 2vw, 12px); }
-
   .day-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: border-color 0.2s; }
   .day-card:hover { border-color: rgba(200,241,53,0.3); }
   .day-card.day-complete { border-color: rgba(200,241,53,0.5); }
-
-  .day-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: clamp(12px, 3vw, 16px) clamp(12px, 3vw, 18px);
-    cursor: pointer;
-    user-select: none;
-    -webkit-user-select: none;
-    gap: 8px;
-  }
-
+  .day-header { display: flex; align-items: center; justify-content: space-between; padding: clamp(12px, 3vw, 16px) clamp(12px, 3vw, 18px); cursor: pointer; user-select: none; -webkit-user-select: none; gap: 8px; }
   .day-left { display: flex; align-items: center; gap: clamp(8px, 2vw, 12px); min-width: 0; }
   .day-num { font-family: 'Bebas Neue', sans-serif; font-size: clamp(1.2rem, 4vw, 1.5rem); color: var(--lime); letter-spacing: 0.04em; line-height: 1; width: clamp(30px, 8vw, 40px); flex-shrink: 0; }
   .day-info { display: flex; flex-direction: column; min-width: 0; }
   .day-name { font-weight: 500; font-size: clamp(0.82rem, 2.5vw, 0.95rem); color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .day-dur { font-size: clamp(0.7rem, 2vw, 0.78rem); color: var(--muted); margin-top: 1px; }
   .day-right { display: flex; align-items: center; gap: clamp(5px, 1.5vw, 8px); flex-shrink: 0; }
-
   .day-badge { font-size: clamp(0.6rem, 1.8vw, 0.72rem); letter-spacing: 0.05em; text-transform: uppercase; padding: 3px clamp(6px, 2vw, 10px); border-radius: 20px; border: 1px solid; font-weight: 500; display: none; }
-
   @media (min-width: 420px) { .day-badge { display: inline-block; } }
-
   .badge-strength { color: #FF6B6B; border-color: rgba(255,107,107,0.3); background: rgba(255,107,107,0.08); }
   .badge-cardio { color: #4ECDC4; border-color: rgba(78,205,196,0.3); background: rgba(78,205,196,0.08); }
   .badge-rest { color: var(--muted); border-color: rgba(107,110,90,0.3); background: rgba(107,110,90,0.08); }
   .badge-hiit { color: #FFD93D; border-color: rgba(255,217,61,0.3); background: rgba(255,217,61,0.08); }
   .badge-flexibility { color: #A78BFA; border-color: rgba(167,139,250,0.3); background: rgba(167,139,250,0.08); }
   .badge-active { color: var(--lime); border-color: var(--border); background: rgba(200,241,53,0.08); }
-
-  .regen-btn {
-    background: transparent;
-    border: 1px solid rgba(107,110,90,0.3);
-    border-radius: 6px;
-    color: var(--muted);
-    font-size: clamp(0.65rem, 2vw, 0.74rem);
-    padding: clamp(5px, 1.5vw, 5px) clamp(7px, 2vw, 9px);
-    cursor: pointer;
-    transition: all 0.15s;
-    font-family: 'DM Sans', sans-serif;
-    touch-action: manipulation;
-    white-space: nowrap;
-  }
-
+  .regen-btn { background: transparent; border: 1px solid rgba(107,110,90,0.3); border-radius: 6px; color: var(--muted); font-size: clamp(0.65rem, 2vw, 0.74rem); padding: clamp(5px, 1.5vw, 5px) clamp(7px, 2vw, 9px); cursor: pointer; transition: all 0.15s; font-family: 'DM Sans', sans-serif; touch-action: manipulation; white-space: nowrap; }
   .regen-btn:active { background: rgba(200,241,53,0.1); }
   .regen-btn:hover { border-color: rgba(200,241,53,0.3); color: var(--lime); }
-
   .regen-btn .regen-text { display: none; }
   @media (min-width: 520px) { .regen-btn .regen-text { display: inline; } }
-
   .chevron { color: var(--muted); font-size: clamp(0.9rem, 3vw, 1.1rem); flex-shrink: 0; }
-
   .day-body { display: none; border-top: 1px solid var(--border); padding: clamp(12px, 3vw, 16px) clamp(12px, 3vw, 18px) clamp(14px, 4vw, 18px); }
   .day-body.open { display: block; animation: slideDown 0.2s ease; }
-
-  @keyframes slideDown {
-    from { opacity: 0; transform: translateY(-6px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
+  @keyframes slideDown { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
   .regen-loading { display: none; align-items: center; gap: 8px; padding: 8px 0 12px; font-size: 0.82rem; color: var(--muted); }
   .regen-loading.active { display: flex; }
-
   .exercises { display: flex; flex-direction: column; gap: clamp(6px, 2vw, 8px); }
-
-  .exercise-row {
-    display: flex;
-    align-items: flex-start;
-    gap: clamp(10px, 3vw, 12px);
-    padding: clamp(10px, 3vw, 12px);
-    background: rgba(255,255,255,0.025);
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.15s;
-    touch-action: manipulation;
-  }
-
+  .exercise-row { display: flex; align-items: flex-start; gap: clamp(10px, 3vw, 12px); padding: clamp(10px, 3vw, 12px); background: rgba(255,255,255,0.025); border-radius: 8px; cursor: pointer; transition: all 0.15s; touch-action: manipulation; }
   .exercise-row:active { background: rgba(255,255,255,0.05); }
   .exercise-row:hover { background: rgba(255,255,255,0.04); }
   .exercise-row.done { opacity: 0.4; }
-
-  .ex-check {
-    width: clamp(20px, 5vw, 20px);
-    height: clamp(20px, 5vw, 20px);
-    border: 1.5px solid var(--muted);
-    border-radius: 4px;
-    flex-shrink: 0;
-    margin-top: 2px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.15s;
-  }
-
+  .ex-check { width: 20px; height: 20px; border: 1.5px solid var(--muted); border-radius: 4px; flex-shrink: 0; margin-top: 2px; display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
   .exercise-row.done .ex-check { background: var(--lime); border-color: var(--lime); }
   .ex-tick { display: none; color: var(--dark); font-size: 11px; font-weight: 700; }
   .exercise-row.done .ex-tick { display: block; }
-
   .ex-details { flex: 1; min-width: 0; }
   .ex-name { font-weight: 500; font-size: clamp(0.82rem, 2.5vw, 0.9rem); color: var(--text); }
   .exercise-row.done .ex-name { text-decoration: line-through; }
   .ex-meta { font-size: clamp(0.72rem, 2vw, 0.8rem); color: var(--muted); margin-top: 2px; }
   .ex-tip { font-size: clamp(0.7rem, 2vw, 0.78rem); font-style: italic; color: rgba(200,241,53,0.5); margin-top: 4px; }
-
   .day-progress { margin-top: 12px; display: flex; align-items: center; gap: 8px; }
   .progress-label { font-size: clamp(0.65rem, 2vw, 0.72rem); color: var(--muted); white-space: nowrap; }
   .progress-bar { flex: 1; height: 3px; background: rgba(255,255,255,0.08); border-radius: 2px; overflow: hidden; }
   .progress-fill { height: 100%; background: var(--lime); border-radius: 2px; transition: width 0.3s ease; width: 0%; }
-
   .day-note { margin-top: 12px; padding: 10px 14px; background: rgba(200,241,53,0.05); border-left: 2px solid var(--lime); border-radius: 0 6px 6px 0; font-size: clamp(0.75rem, 2.5vw, 0.83rem); color: rgba(240,240,232,0.7); font-style: italic; }
-
-  /* ── Nutrition & tips ── */
   .out-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(1.1rem, 4vw, 1.4rem); color: var(--lime); letter-spacing: 0.04em; margin: clamp(1.5rem, 4vw, 2rem) 0 clamp(0.75rem, 2vw, 1rem); }
-
-  .nutrition-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: clamp(6px, 2vw, 10px);
-  }
-
+  .nutrition-grid { display: grid; grid-template-columns: 1fr; gap: clamp(6px, 2vw, 10px); }
   @media (min-width: 480px) { .nutrition-grid { grid-template-columns: repeat(2, 1fr); } }
-
   .nutrition-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: clamp(12px, 3vw, 16px); }
   .nutrition-title { font-weight: 500; font-size: clamp(0.82rem, 2.5vw, 0.88rem); color: var(--text); margin-bottom: 6px; }
   .nutrition-text { font-size: clamp(0.75rem, 2.2vw, 0.82rem); color: var(--muted); line-height: 1.6; }
-
   .tips-list { display: flex; flex-direction: column; gap: clamp(6px, 2vw, 8px); }
   .tip-row { display: flex; gap: 10px; align-items: flex-start; font-size: clamp(0.8rem, 2.5vw, 0.88rem); color: rgba(240,240,232,0.75); line-height: 1.5; }
   .tip-num { font-family: 'Bebas Neue', sans-serif; color: var(--lime); font-size: 1rem; line-height: 1.4; min-width: 18px; }
-
-  .reset-btn {
-    background: transparent;
-    border: 1px solid var(--border);
-    color: var(--muted);
-    border-radius: 8px;
-    padding: clamp(10px, 3vw, 10px) 18px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: clamp(0.8rem, 2.5vw, 0.85rem);
-    cursor: pointer;
-    transition: all 0.15s;
-    margin-top: clamp(1.5rem, 4vw, 2rem);
-    display: block;
-    width: 100%;
-    text-align: center;
-    touch-action: manipulation;
-  }
-
+  .reset-btn { background: transparent; border: 1px solid var(--border); color: var(--muted); border-radius: 8px; padding: clamp(10px, 3vw, 10px) 18px; font-family: 'DM Sans', sans-serif; font-size: clamp(0.8rem, 2.5vw, 0.85rem); cursor: pointer; transition: all 0.15s; margin-top: clamp(1.5rem, 4vw, 2rem); display: block; width: 100%; text-align: center; touch-action: manipulation; }
   @media (min-width: 480px) { .reset-btn { width: auto; } }
   .reset-btn:hover { border-color: rgba(200,241,53,0.3); color: var(--lime); }
-
-  /* ── Print ── */
   @media print {
     body { background: white; color: black; }
     header, .split-section, .prompt-section, .loading, .reset-btn, .pdf-btn, .regen-btn, .error-msg, .day-progress { display: none !important; }
@@ -466,12 +151,10 @@
 </style>
 </head>
 <body>
-
 <header>
   <div class="logo">FitPrompt</div>
   <div class="tagline">AI-powered personal training plans</div>
 </header>
-
 <main>
   <div class="split-section" style="margin-top:2rem">
     <div class="section-label">Choose your training style</div>
@@ -508,7 +191,6 @@
       </div>
     </div>
   </div>
-
   <div class="prompt-section">
     <div class="section-label" style="margin-top:1.5rem">Describe yourself & your goals</div>
     <div class="prompt-box">
@@ -524,18 +206,15 @@
     </div>
     <div class="error-msg" id="error-msg"></div>
   </div>
-
   <div class="loading" id="loading">
     <div class="dots"><span></span><span></span><span></span></div>
     <span>Building your personalized plan...</span>
   </div>
-
   <div id="plan-output"></div>
 </main>
-
 <script>
-const API_KEY = 'AIzaSyCPhOMceAKgQa1ppBclC6_qBR83ET67JUE';
-const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${API_KEY}`;
+const API_KEY = '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';
+const API_URL = 'https://api.groq.com/openai/v1/chat/completions';
 
 let currentPlan = null;
 let selectedSplit = 'best';
@@ -607,7 +286,6 @@ function buildDayInner(day, i) {
         ${ex.tip ? `<div class="ex-tip">${ex.tip}</div>` : ''}
       </div>
     </div>`).join('');
-
   return `
     <div class="regen-loading" id="rl-${i}">
       <div class="dots"><span></span><span></span><span></span></div>
@@ -642,21 +320,26 @@ function buildDayCard(day, i) {
     </div>`;
 }
 
-async function callAI(text) {
+async function callAI(systemPrompt, userPrompt) {
   const res = await fetch(API_URL, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${API_KEY}` },
     body: JSON.stringify({
-      contents: [{ parts: [{ text }] }],
-      generationConfig: { temperature: 0.7, maxOutputTokens: 4000 }
+      model: 'llama-3.3-70b-versatile',
+      temperature: 0.7,
+      max_tokens: 4000,
+      messages: [
+        { role: 'system', content: systemPrompt },
+        { role: 'user', content: userPrompt }
+      ]
     })
   });
   const data = await res.json();
   if (!res.ok) throw new Error(data?.error?.message || 'API error ' + res.status);
-  const raw = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
-  if (!raw) throw new Error('Empty response from Gemini');
+  const raw = data.choices?.[0]?.message?.content || '';
+  if (!raw) throw new Error('Empty response from Groq');
   const match = raw.replace(/```json|```/g, '').match(/\{[\s\S]*\}/);
-  if (!match) throw new Error('Could not parse AI response as JSON');
+  if (!match) throw new Error('No JSON found: ' + raw.slice(0, 200));
   return JSON.parse(match[0]);
 }
 
@@ -666,19 +349,17 @@ async function regenDay(i) {
   const body = card.querySelector('.day-body');
   const rl = document.getElementById(`rl-${i}`);
   const exEl = document.getElementById(`ex-${i}`);
-
   if (!body.classList.contains('open')) toggleDay(card.querySelector('.day-header'));
-
   rl.classList.add('active');
   exEl.style.opacity = '0.2';
-
   try {
     const day = currentPlan.days[i];
     const newDay = await callAI(
-      `You are a personal trainer. Generate a replacement workout for Day ${i+1} of a 7-day plan.
+      'You are a personal trainer. Respond ONLY with valid JSON, no markdown.',
+      `Generate a replacement workout for Day ${i+1} of a 7-day plan.
 User description: "${lastPrompt}". Split: ${SPLIT_LABELS[selectedSplit]}
 Current day: "${day.name}" (${day.type}, ${day.duration}). Give different exercises.
-Respond with ONLY this JSON (no markdown):
+Respond with ONLY this JSON:
 {"name":"...","type":"...","duration":"...","exercises":[{"name":"...","sets":"...","tip":"..."}],"note":"..."}`
     );
     currentPlan.days[i] = newDay;
@@ -699,7 +380,6 @@ Respond with ONLY this JSON (no markdown):
 function renderPlan(plan) {
   currentPlan = plan;
   const out = document.getElementById('plan-output');
-
   out.innerHTML = `
     <div class="plan-header">
       <div class="plan-title">${plan.title}</div>
@@ -724,7 +404,6 @@ function renderPlan(plan) {
       </div>` : ''}
     <button class="reset-btn" onclick="resetPlan()">← Generate a new plan</button>
   `;
-
   out.classList.add('visible');
   const first = out.querySelector('.day-header');
   if (first) toggleDay(first);
@@ -741,22 +420,19 @@ async function generatePlan() {
   const prompt = document.getElementById('prompt-input').value.trim();
   if (!prompt) { document.getElementById('prompt-input').focus(); return; }
   lastPrompt = prompt;
-
   const btn = document.getElementById('gen-btn');
   const loading = document.getElementById('loading');
   const errorEl = document.getElementById('error-msg');
   const output = document.getElementById('plan-output');
-
   btn.disabled = true;
   loading.classList.add('active');
   errorEl.classList.remove('show');
   output.classList.remove('visible');
   output.innerHTML = '';
-
-  const fullPrompt = `You are an expert certified personal trainer and nutritionist.
-${SPLIT_LABELS[selectedSplit]}
+  const systemPrompt = `You are an expert certified personal trainer and nutritionist. Respond ONLY with valid JSON, no markdown, no backticks, no explanation.`;
+  const userPrompt = `${SPLIT_LABELS[selectedSplit]}
 The user described themselves as: "${prompt}"
-Respond with ONLY a valid JSON object (no markdown, no backticks, no explanation):
+Respond with ONLY this JSON:
 {
   "title": "Short motivating plan name",
   "summary": { "duration": "X min/day", "level": "Beginner/Intermediate/Advanced", "daysPerWeek": "X days", "focus": "e.g. Fat loss" },
@@ -773,10 +449,9 @@ Respond with ONLY a valid JSON object (no markdown, no backticks, no explanation
   ],
   "tips": ["Tip 1", "Tip 2", "Tip 3"]
 }
-Always include exactly 7 days. Be specific and personalized. Respond ONLY with the JSON.`;
-
+Always include exactly 7 days. Be specific and personalized.`;
   try {
-    const plan = await callAI(fullPrompt);
+    const plan = await callAI(systemPrompt, userPrompt);
     renderPlan(plan);
   } catch (err) {
     errorEl.textContent = 'Error: ' + (err.message || 'Something went wrong');
