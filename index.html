@@ -213,8 +213,8 @@
   <div id="plan-output"></div>
 </main>
 <script>
-const API_KEY = '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';
-const API_URL = 'https://api.groq.com/openai/v1/chat/completions';
+const API_KEY = 'AIzaSyBDX1d6KDTSrT0OVEECW8K7nTxkQRUWY1Q';
+const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${API_KEY}`;
 
 let currentPlan = null;
 let selectedSplit = 'best';
@@ -323,21 +323,16 @@ function buildDayCard(day, i) {
 async function callAI(systemPrompt, userPrompt) {
   const res = await fetch(API_URL, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${API_KEY}` },
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      model: 'llama-3.3-70b-versatile',
-      temperature: 0.7,
-      max_tokens: 4000,
-      messages: [
-        { role: 'system', content: systemPrompt },
-        { role: 'user', content: userPrompt }
-      ]
+      contents: [{ parts: [{ text: systemPrompt + '\n\n' + userPrompt }] }],
+      generationConfig: { temperature: 0.7, maxOutputTokens: 4000 }
     })
   });
   const data = await res.json();
   if (!res.ok) throw new Error(data?.error?.message || 'API error ' + res.status);
-  const raw = data.choices?.[0]?.message?.content || '';
-  if (!raw) throw new Error('Empty response from Groq');
+  const raw = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
+  if (!raw) throw new Error('Empty response from Gemini');
   const match = raw.replace(/```json|```/g, '').match(/\{[\s\S]*\}/);
   if (!match) throw new Error('No JSON found: ' + raw.slice(0, 200));
   return JSON.parse(match[0]);
